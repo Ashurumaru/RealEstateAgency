@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9303cc7c3957480594f77bd987a07604" Name="Diagram1">
+        <EntityTypeShape EntityType="kursachModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="kursachModel.Договоры" Width="1.5" PointX="8.25" PointY="14" />
+        <EntityTypeShape EntityType="kursachModel.Документы" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="kursachModel.ДополнительныеУслуги" Width="1.5" PointX="10.5" PointY="13.25" />
+        <EntityTypeShape EntityType="kursachModel.Недвижимость" Width="1.5" PointX="3" PointY="17.625" />
+        <EntityTypeShape EntityType="kursachModel.ОперацииСНедвижимостью" Width="1.5" PointX="10.5" PointY="16" />
+        <EntityTypeShape EntityType="kursachModel.ОценкиНедвижимости" Width="1.5" PointX="5.25" PointY="21.875" />
+        <EntityTypeShape EntityType="kursachModel.Пользователи" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="kursachModel.СтатусНедвижимости" Width="1.5" PointX="5.25" PointY="19.125" />
+        <EntityTypeShape EntityType="kursachModel.ФотографииНедвижимости" Width="1.5" PointX="5.25" PointY="16.625" />
+        <EntityTypeShape EntityType="kursachModel.View_НедвижимостьДетали" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="kursachModel.FK__Договоры__Недвиж__47DBAE45" />
+        <AssociationConnector Association="kursachModel.FK__Дополните__Сделк__4CA06362" />
+        <AssociationConnector Association="kursachModel.FK__ОперацииС__Сделк__4F7CD00D" />
+        <AssociationConnector Association="kursachModel.FK_Договоры_Клиент_ID" />
+        <AssociationConnector Association="kursachModel.FK_Договоры_Сотрудник_ID" />
+        <AssociationConnector Association="kursachModel.FK__Документы__Владе__440B1D61" />
+        <AssociationConnector Association="kursachModel.FK__Документы__Недви__44FF419A" />
+        <AssociationConnector Association="kursachModel.FK__Недвижимо__Владе__5AEE82B9" />
+        <AssociationConnector Association="kursachModel.FK__ОценкиНед__Недви__3F466844" />
+        <AssociationConnector Association="kursachModel.FK__СтатусНед__Недви__398D8EEE" />
+        <AssociationConnector Association="kursachModel.FK__Фотографи__Недви__3C69FB99" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

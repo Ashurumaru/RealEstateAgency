@@ -1,0 +1,1009 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище kursachModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Договоры">
+          <Key>
+            <PropertyRef Name="Сделка_ID" />
+          </Key>
+          <Property Name="Сделка_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Вид_основной_оказ_услуг" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_сделки" Type="datetime" />
+          <Property Name="Сумма_сделки" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Недвижимость_ID" Type="int" />
+          <Property Name="Клиент_ID" Type="int" />
+          <Property Name="Сотрудник_ID" Type="int" />
+          <Property Name="Комментарии" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Документы">
+          <Key>
+            <PropertyRef Name="Документ_ID" />
+          </Key>
+          <Property Name="Документ_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Владелец_ID" Type="int" />
+          <Property Name="ТипДокумента" Type="nvarchar" MaxLength="100" />
+          <Property Name="Название" Type="nvarchar" MaxLength="255" />
+          <Property Name="ДатаВыдачи" Type="datetime" />
+          <Property Name="ДействителенДо" Type="datetime" />
+          <Property Name="Недвижимость_ID" Type="int" />
+          <Property Name="СсылкаНаДокумент" Type="nvarchar(max)" />
+          <Property Name="Статус" Type="nvarchar" MaxLength="100" />
+          <Property Name="Комментарий" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ДополнительныеУслуги">
+          <Key>
+            <PropertyRef Name="Услуга_ID" />
+          </Key>
+          <Property Name="Услуга_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Сделка_ID" Type="int" />
+          <Property Name="Описание" Type="nvarchar(max)" />
+          <Property Name="Стоимость" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Недвижимость">
+          <Key>
+            <PropertyRef Name="Недвижимость_ID" />
+          </Key>
+          <Property Name="Недвижимость_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="255" />
+          <Property Name="Площадь" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Количество_комнат" Type="int" />
+          <Property Name="Стоимость" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Описание" Type="nvarchar(max)" />
+          <Property Name="Тип_недвижимости" Type="nvarchar" MaxLength="100" />
+          <Property Name="Этаж" Type="int" />
+          <Property Name="Этажность_здания" Type="int" />
+          <Property Name="Год_постройки" Type="int" />
+          <Property Name="Наличие_балкона_лоджии" Type="bit" />
+          <Property Name="Наличие_парковки" Type="bit" />
+          <Property Name="Отопление" Type="nvarchar" MaxLength="100" />
+          <Property Name="Водоснабжение" Type="nvarchar" MaxLength="100" />
+          <Property Name="Канализация" Type="nvarchar" MaxLength="100" />
+          <Property Name="Владелец_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="ОперацииСНедвижимостью">
+          <Key>
+            <PropertyRef Name="Операция_ID" />
+          </Key>
+          <Property Name="Операция_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Сделка_ID" Type="int" />
+          <Property Name="Наименование_услуги" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_операции" Type="datetime" />
+          <Property Name="Сумма_операции" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Комментарии" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ОценкиНедвижимости">
+          <Key>
+            <PropertyRef Name="Оценка_ID" />
+          </Key>
+          <Property Name="Оценка_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Недвижимость_ID" Type="int" />
+          <Property Name="Дата_оценки" Type="datetime" />
+          <Property Name="Оценочная_стоимость" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Комментарий" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Пользователь_ID" />
+          </Key>
+          <Property Name="Пользователь_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="255" />
+          <Property Name="Роль" Type="nvarchar" MaxLength="100" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="255" />
+          <Property Name="Контактный_номер_телефона" Type="nvarchar" MaxLength="20" />
+          <Property Name="Электронная_почта" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_регистрации" Type="datetime" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="СтатусНедвижимости">
+          <Key>
+            <PropertyRef Name="Статус_ID" />
+          </Key>
+          <Property Name="Статус_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Недвижимость_ID" Type="int" />
+          <Property Name="Статус" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_изменения_статуса" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ФотографииНедвижимости">
+          <Key>
+            <PropertyRef Name="Фото_ID" />
+          </Key>
+          <Property Name="Фото_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Недвижимость_ID" Type="int" />
+          <Property Name="Фото" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "kursach.dbo.View_НедвижимостьДетали" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_НедвижимостьДетали">
+          <Key>
+            <PropertyRef Name="Недвижимость_ID" />
+          </Key>
+          <Property Name="Недвижимость_ID" Type="int" Nullable="false" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="255" />
+          <Property Name="Площадь" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Количество_комнат" Type="int" />
+          <Property Name="Стоимость" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Описание" Type="nvarchar(max)" />
+          <Property Name="Этаж" Type="int" />
+          <Property Name="Этажность_здания" Type="int" />
+          <Property Name="Год_постройки" Type="int" />
+          <Property Name="Наличие_балкона_лоджии" Type="bit" />
+          <Property Name="Наличие_парковки" Type="bit" />
+          <Property Name="Статус" Type="nvarchar" MaxLength="100" />
+          <Property Name="Дата_изменения_статуса" Type="datetime" />
+          <Property Name="Фотография" Type="varbinary(max)" />
+          <Property Name="Владелец" Type="nvarchar" MaxLength="255" />
+          <Property Name="Контактный_номер_телефона" Type="nvarchar" MaxLength="20" />
+          <Property Name="Количество_фото" Type="int" />
+          <Property Name="Тип_недвижимости" Type="nvarchar" MaxLength="100" />
+          <Property Name="Отопление" Type="nvarchar" MaxLength="100" />
+          <Property Name="Водоснабжение" Type="nvarchar" MaxLength="100" />
+          <Property Name="Канализация" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Договоры__Недвиж__47DBAE45">
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="0..1" />
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Документы__Владе__440B1D61">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+          <End Role="Документы" Type="Self.Документы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Документы">
+              <PropertyRef Name="Владелец_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Документы__Недви__44FF419A">
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="0..1" />
+          <End Role="Документы" Type="Self.Документы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="Документы">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Дополните__Сделк__4CA06362">
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="0..1" />
+          <End Role="ДополнительныеУслуги" Type="Self.ДополнительныеУслуги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="Сделка_ID" />
+            </Principal>
+            <Dependent Role="ДополнительныеУслуги">
+              <PropertyRef Name="Сделка_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Недвижимо__Владе__5AEE82B9">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="Владелец_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ОперацииС__Сделк__4F7CD00D">
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="0..1" />
+          <End Role="ОперацииСНедвижимостью" Type="Self.ОперацииСНедвижимостью" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="Сделка_ID" />
+            </Principal>
+            <Dependent Role="ОперацииСНедвижимостью">
+              <PropertyRef Name="Сделка_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ОценкиНед__Недви__3F466844">
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="0..1" />
+          <End Role="ОценкиНедвижимости" Type="Self.ОценкиНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="ОценкиНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__СтатусНед__Недви__398D8EEE">
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="0..1" />
+          <End Role="СтатусНедвижимости" Type="Self.СтатусНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="СтатусНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Фотографи__Недви__3C69FB99">
+          <End Role="Недвижимость" Type="Self.Недвижимость" Multiplicity="0..1" />
+          <End Role="ФотографииНедвижимости" Type="Self.ФотографииНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="ФотографииНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Договоры_Клиент_ID">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Клиент_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Договоры_Сотрудник_ID">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="0..1" />
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Сотрудник_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище kursachModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Договоры" EntityType="Self.Договоры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Документы" EntityType="Self.Документы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ДополнительныеУслуги" EntityType="Self.ДополнительныеУслуги" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Недвижимость" EntityType="Self.Недвижимость" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ОперацииСНедвижимостью" EntityType="Self.ОперацииСНедвижимостью" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ОценкиНедвижимости" EntityType="Self.ОценкиНедвижимости" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="СтатусНедвижимости" EntityType="Self.СтатусНедвижимости" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ФотографииНедвижимости" EntityType="Self.ФотографииНедвижимости" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_НедвижимостьДетали" EntityType="Self.View_НедвижимостьДетали" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_НедвижимостьДетали].[Недвижимость_ID] AS [Недвижимость_ID], 
+    [View_НедвижимостьДетали].[Адрес] AS [Адрес], 
+    [View_НедвижимостьДетали].[Площадь] AS [Площадь], 
+    [View_НедвижимостьДетали].[Количество_комнат] AS [Количество_комнат], 
+    [View_НедвижимостьДетали].[Стоимость] AS [Стоимость], 
+    [View_НедвижимостьДетали].[Описание] AS [Описание], 
+    [View_НедвижимостьДетали].[Этаж] AS [Этаж], 
+    [View_НедвижимостьДетали].[Этажность_здания] AS [Этажность_здания], 
+    [View_НедвижимостьДетали].[Год_постройки] AS [Год_постройки], 
+    [View_НедвижимостьДетали].[Наличие_балкона_лоджии] AS [Наличие_балкона_лоджии], 
+    [View_НедвижимостьДетали].[Наличие_парковки] AS [Наличие_парковки], 
+    [View_НедвижимостьДетали].[Статус] AS [Статус], 
+    [View_НедвижимостьДетали].[Дата_изменения_статуса] AS [Дата_изменения_статуса], 
+    [View_НедвижимостьДетали].[Фотография] AS [Фотография], 
+    [View_НедвижимостьДетали].[Владелец] AS [Владелец], 
+    [View_НедвижимостьДетали].[Контактный_номер_телефона] AS [Контактный_номер_телефона], 
+    [View_НедвижимостьДетали].[Количество_фото] AS [Количество_фото], 
+    [View_НедвижимостьДетали].[Тип_недвижимости] AS [Тип_недвижимости], 
+    [View_НедвижимостьДетали].[Отопление] AS [Отопление], 
+    [View_НедвижимостьДетали].[Водоснабжение] AS [Водоснабжение], 
+    [View_НедвижимостьДетали].[Канализация] AS [Канализация]
+    FROM [dbo].[View_НедвижимостьДетали] AS [View_НедвижимостьДетали]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Договоры__Недвиж__47DBAE45" Association="Self.FK__Договоры__Недвиж__47DBAE45">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Документы__Владе__440B1D61" Association="Self.FK__Документы__Владе__440B1D61">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Документы" EntitySet="Документы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Документы__Недви__44FF419A" Association="Self.FK__Документы__Недви__44FF419A">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="Документы" EntitySet="Документы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Дополните__Сделк__4CA06362" Association="Self.FK__Дополните__Сделк__4CA06362">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="ДополнительныеУслуги" EntitySet="ДополнительныеУслуги" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Недвижимо__Владе__5AEE82B9" Association="Self.FK__Недвижимо__Владе__5AEE82B9">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ОперацииС__Сделк__4F7CD00D" Association="Self.FK__ОперацииС__Сделк__4F7CD00D">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="ОперацииСНедвижимостью" EntitySet="ОперацииСНедвижимостью" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ОценкиНед__Недви__3F466844" Association="Self.FK__ОценкиНед__Недви__3F466844">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="ОценкиНедвижимости" EntitySet="ОценкиНедвижимости" />
+          </AssociationSet>
+          <AssociationSet Name="FK__СтатусНед__Недви__398D8EEE" Association="Self.FK__СтатусНед__Недви__398D8EEE">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="СтатусНедвижимости" EntitySet="СтатусНедвижимости" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Фотографи__Недви__3C69FB99" Association="Self.FK__Фотографи__Недви__3C69FB99">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="ФотографииНедвижимости" EntitySet="ФотографииНедвижимости" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Договоры_Клиент_ID" Association="Self.FK_Договоры_Клиент_ID">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Договоры_Сотрудник_ID" Association="Self.FK_Договоры_Сотрудник_ID">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="kursachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="kursachEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(kursachModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(kursachModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="sysdiagrams" EntityType="kursachModel.sysdiagrams" />
+          <EntitySet Name="Договоры" EntityType="kursachModel.Договоры" />
+          <EntitySet Name="Документы" EntityType="kursachModel.Документы" />
+          <EntitySet Name="ДополнительныеУслуги" EntityType="kursachModel.ДополнительныеУслуги" />
+          <EntitySet Name="Недвижимость" EntityType="kursachModel.Недвижимость" />
+          <EntitySet Name="ОперацииСНедвижимостью" EntityType="kursachModel.ОперацииСНедвижимостью" />
+          <EntitySet Name="ОценкиНедвижимости" EntityType="kursachModel.ОценкиНедвижимости" />
+          <EntitySet Name="Пользователи" EntityType="kursachModel.Пользователи" />
+          <EntitySet Name="СтатусНедвижимости" EntityType="kursachModel.СтатусНедвижимости" />
+          <EntitySet Name="ФотографииНедвижимости" EntityType="kursachModel.ФотографииНедвижимости" />
+          <EntitySet Name="View_НедвижимостьДетали" EntityType="kursachModel.View_НедвижимостьДетали" />
+          <AssociationSet Name="FK__Договоры__Недвиж__47DBAE45" Association="kursachModel.FK__Договоры__Недвиж__47DBAE45">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Дополните__Сделк__4CA06362" Association="kursachModel.FK__Дополните__Сделк__4CA06362">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="ДополнительныеУслуги" EntitySet="ДополнительныеУслуги" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ОперацииС__Сделк__4F7CD00D" Association="kursachModel.FK__ОперацииС__Сделк__4F7CD00D">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="ОперацииСНедвижимостью" EntitySet="ОперацииСНедвижимостью" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Договоры_Клиент_ID" Association="kursachModel.FK_Договоры_Клиент_ID">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Договоры_Сотрудник_ID" Association="kursachModel.FK_Договоры_Сотрудник_ID">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Документы__Владе__440B1D61" Association="kursachModel.FK__Документы__Владе__440B1D61">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Документы" EntitySet="Документы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Документы__Недви__44FF419A" Association="kursachModel.FK__Документы__Недви__44FF419A">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="Документы" EntitySet="Документы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Недвижимо__Владе__5AEE82B9" Association="kursachModel.FK__Недвижимо__Владе__5AEE82B9">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ОценкиНед__Недви__3F466844" Association="kursachModel.FK__ОценкиНед__Недви__3F466844">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="ОценкиНедвижимости" EntitySet="ОценкиНедвижимости" />
+          </AssociationSet>
+          <AssociationSet Name="FK__СтатусНед__Недви__398D8EEE" Association="kursachModel.FK__СтатусНед__Недви__398D8EEE">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="СтатусНедвижимости" EntitySet="СтатусНедвижимости" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Фотографи__Недви__3C69FB99" Association="kursachModel.FK__Фотографи__Недви__3C69FB99">
+            <End Role="Недвижимость" EntitySet="Недвижимость" />
+            <End Role="ФотографииНедвижимости" EntitySet="ФотографииНедвижимости" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Договоры">
+          <Key>
+            <PropertyRef Name="Сделка_ID" />
+          </Key>
+          <Property Name="Сделка_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Вид_основной_оказ_услуг" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_сделки" Type="DateTime" Precision="3" />
+          <Property Name="Сумма_сделки" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Недвижимость_ID" Type="Int32" />
+          <Property Name="Клиент_ID" Type="Int32" />
+          <Property Name="Сотрудник_ID" Type="Int32" />
+          <Property Name="Комментарии" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__Договоры__Недвиж__47DBAE45" FromRole="Договоры" ToRole="Недвижимость" />
+          <NavigationProperty Name="ДополнительныеУслуги" Relationship="kursachModel.FK__Дополните__Сделк__4CA06362" FromRole="Договоры" ToRole="ДополнительныеУслуги" />
+          <NavigationProperty Name="ОперацииСНедвижимостью" Relationship="kursachModel.FK__ОперацииС__Сделк__4F7CD00D" FromRole="Договоры" ToRole="ОперацииСНедвижимостью" />
+          <NavigationProperty Name="Пользователи" Relationship="kursachModel.FK_Договоры_Клиент_ID" FromRole="Договоры" ToRole="Пользователи" />
+          <NavigationProperty Name="Пользователи1" Relationship="kursachModel.FK_Договоры_Сотрудник_ID" FromRole="Договоры" ToRole="Пользователи" />
+        </EntityType>
+        <EntityType Name="Документы">
+          <Key>
+            <PropertyRef Name="Документ_ID" />
+          </Key>
+          <Property Name="Документ_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Владелец_ID" Type="Int32" />
+          <Property Name="ТипДокумента" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Название" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ДатаВыдачи" Type="DateTime" Precision="3" />
+          <Property Name="ДействителенДо" Type="DateTime" Precision="3" />
+          <Property Name="Недвижимость_ID" Type="Int32" />
+          <Property Name="СсылкаНаДокумент" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Статус" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Комментарий" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователи" Relationship="kursachModel.FK__Документы__Владе__440B1D61" FromRole="Документы" ToRole="Пользователи" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__Документы__Недви__44FF419A" FromRole="Документы" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="ДополнительныеУслуги">
+          <Key>
+            <PropertyRef Name="Услуга_ID" />
+          </Key>
+          <Property Name="Услуга_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Сделка_ID" Type="Int32" />
+          <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Стоимость" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Договоры" Relationship="kursachModel.FK__Дополните__Сделк__4CA06362" FromRole="ДополнительныеУслуги" ToRole="Договоры" />
+        </EntityType>
+        <EntityType Name="Недвижимость">
+          <Key>
+            <PropertyRef Name="Недвижимость_ID" />
+          </Key>
+          <Property Name="Недвижимость_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Площадь" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Количество_комнат" Type="Int32" />
+          <Property Name="Стоимость" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Тип_недвижимости" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Этаж" Type="Int32" />
+          <Property Name="Этажность_здания" Type="Int32" />
+          <Property Name="Год_постройки" Type="Int32" />
+          <Property Name="Наличие_балкона_лоджии" Type="Boolean" />
+          <Property Name="Наличие_парковки" Type="Boolean" />
+          <Property Name="Отопление" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Водоснабжение" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Канализация" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Владелец_ID" Type="Int32" />
+          <NavigationProperty Name="Договоры" Relationship="kursachModel.FK__Договоры__Недвиж__47DBAE45" FromRole="Недвижимость" ToRole="Договоры" />
+          <NavigationProperty Name="Документы" Relationship="kursachModel.FK__Документы__Недви__44FF419A" FromRole="Недвижимость" ToRole="Документы" />
+          <NavigationProperty Name="Пользователи" Relationship="kursachModel.FK__Недвижимо__Владе__5AEE82B9" FromRole="Недвижимость" ToRole="Пользователи" />
+          <NavigationProperty Name="ОценкиНедвижимости" Relationship="kursachModel.FK__ОценкиНед__Недви__3F466844" FromRole="Недвижимость" ToRole="ОценкиНедвижимости" />
+          <NavigationProperty Name="СтатусНедвижимости" Relationship="kursachModel.FK__СтатусНед__Недви__398D8EEE" FromRole="Недвижимость" ToRole="СтатусНедвижимости" />
+          <NavigationProperty Name="ФотографииНедвижимости" Relationship="kursachModel.FK__Фотографи__Недви__3C69FB99" FromRole="Недвижимость" ToRole="ФотографииНедвижимости" />
+        </EntityType>
+        <EntityType Name="ОперацииСНедвижимостью">
+          <Key>
+            <PropertyRef Name="Операция_ID" />
+          </Key>
+          <Property Name="Операция_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Сделка_ID" Type="Int32" />
+          <Property Name="Наименование_услуги" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_операции" Type="DateTime" Precision="3" />
+          <Property Name="Сумма_операции" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Комментарии" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Договоры" Relationship="kursachModel.FK__ОперацииС__Сделк__4F7CD00D" FromRole="ОперацииСНедвижимостью" ToRole="Договоры" />
+        </EntityType>
+        <EntityType Name="ОценкиНедвижимости">
+          <Key>
+            <PropertyRef Name="Оценка_ID" />
+          </Key>
+          <Property Name="Оценка_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Недвижимость_ID" Type="Int32" />
+          <Property Name="Дата_оценки" Type="DateTime" Precision="3" />
+          <Property Name="Оценочная_стоимость" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Комментарий" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__ОценкиНед__Недви__3F466844" FromRole="ОценкиНедвижимости" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Пользователь_ID" />
+          </Key>
+          <Property Name="Пользователь_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Роль" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Контактный_номер_телефона" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Электронная_почта" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_регистрации" Type="DateTime" Precision="3" />
+          <Property Name="Пароль" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Договоры" Relationship="kursachModel.FK_Договоры_Клиент_ID" FromRole="Пользователи" ToRole="Договоры" />
+          <NavigationProperty Name="Договоры1" Relationship="kursachModel.FK_Договоры_Сотрудник_ID" FromRole="Пользователи" ToRole="Договоры" />
+          <NavigationProperty Name="Документы" Relationship="kursachModel.FK__Документы__Владе__440B1D61" FromRole="Пользователи" ToRole="Документы" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__Недвижимо__Владе__5AEE82B9" FromRole="Пользователи" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="СтатусНедвижимости">
+          <Key>
+            <PropertyRef Name="Статус_ID" />
+          </Key>
+          <Property Name="Статус_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Недвижимость_ID" Type="Int32" />
+          <Property Name="Статус" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_изменения_статуса" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__СтатусНед__Недви__398D8EEE" FromRole="СтатусНедвижимости" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="ФотографииНедвижимости">
+          <Key>
+            <PropertyRef Name="Фото_ID" />
+          </Key>
+          <Property Name="Фото_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Недвижимость_ID" Type="Int32" />
+          <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Недвижимость" Relationship="kursachModel.FK__Фотографи__Недви__3C69FB99" FromRole="ФотографииНедвижимости" ToRole="Недвижимость" />
+        </EntityType>
+        <EntityType Name="View_НедвижимостьДетали">
+          <Key>
+            <PropertyRef Name="Недвижимость_ID" />
+          </Key>
+          <Property Name="Недвижимость_ID" Type="Int32" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Площадь" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Количество_комнат" Type="Int32" />
+          <Property Name="Стоимость" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Описание" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Этаж" Type="Int32" />
+          <Property Name="Этажность_здания" Type="Int32" />
+          <Property Name="Год_постройки" Type="Int32" />
+          <Property Name="Наличие_балкона_лоджии" Type="Boolean" />
+          <Property Name="Наличие_парковки" Type="Boolean" />
+          <Property Name="Статус" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_изменения_статуса" Type="DateTime" Precision="3" />
+          <Property Name="Фотография" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Владелец" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Контактный_номер_телефона" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Количество_фото" Type="Int32" />
+          <Property Name="Тип_недвижимости" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Отопление" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Водоснабжение" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Канализация" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Договоры__Недвиж__47DBAE45">
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="0..1" />
+          <End Type="kursachModel.Договоры" Role="Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Дополните__Сделк__4CA06362">
+          <End Type="kursachModel.Договоры" Role="Договоры" Multiplicity="0..1" />
+          <End Type="kursachModel.ДополнительныеУслуги" Role="ДополнительныеУслуги" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="Сделка_ID" />
+            </Principal>
+            <Dependent Role="ДополнительныеУслуги">
+              <PropertyRef Name="Сделка_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ОперацииС__Сделк__4F7CD00D">
+          <End Type="kursachModel.Договоры" Role="Договоры" Multiplicity="0..1" />
+          <End Type="kursachModel.ОперацииСНедвижимостью" Role="ОперацииСНедвижимостью" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="Сделка_ID" />
+            </Principal>
+            <Dependent Role="ОперацииСНедвижимостью">
+              <PropertyRef Name="Сделка_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Договоры_Клиент_ID">
+          <End Type="kursachModel.Пользователи" Role="Пользователи" Multiplicity="0..1" />
+          <End Type="kursachModel.Договоры" Role="Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Клиент_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Договоры_Сотрудник_ID">
+          <End Type="kursachModel.Пользователи" Role="Пользователи" Multiplicity="0..1" />
+          <End Type="kursachModel.Договоры" Role="Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="Сотрудник_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Документы__Владе__440B1D61">
+          <End Type="kursachModel.Пользователи" Role="Пользователи" Multiplicity="0..1" />
+          <End Type="kursachModel.Документы" Role="Документы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Документы">
+              <PropertyRef Name="Владелец_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Документы__Недви__44FF419A">
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="0..1" />
+          <End Type="kursachModel.Документы" Role="Документы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="Документы">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Недвижимо__Владе__5AEE82B9">
+          <End Type="kursachModel.Пользователи" Role="Пользователи" Multiplicity="0..1" />
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Пользователь_ID" />
+            </Principal>
+            <Dependent Role="Недвижимость">
+              <PropertyRef Name="Владелец_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ОценкиНед__Недви__3F466844">
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="0..1" />
+          <End Type="kursachModel.ОценкиНедвижимости" Role="ОценкиНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="ОценкиНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__СтатусНед__Недви__398D8EEE">
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="0..1" />
+          <End Type="kursachModel.СтатусНедвижимости" Role="СтатусНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="СтатусНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Фотографи__Недви__3C69FB99">
+          <End Type="kursachModel.Недвижимость" Role="Недвижимость" Multiplicity="0..1" />
+          <End Type="kursachModel.ФотографииНедвижимости" Role="ФотографииНедвижимости" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Недвижимость">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Principal>
+            <Dependent Role="ФотографииНедвижимости">
+              <PropertyRef Name="Недвижимость_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище kursachModelContainer" CdmEntityContainer="kursachEntities">
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище kursachModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище kursachModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище kursachModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище kursachModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="kursachModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище kursachModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="kursachModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище kursachModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище kursachModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="kursachModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Договоры">
+            <EntityTypeMapping TypeName="kursachModel.Договоры">
+              <MappingFragment StoreEntitySet="Договоры">
+                <ScalarProperty Name="Комментарии" ColumnName="Комментарии" />
+                <ScalarProperty Name="Сотрудник_ID" ColumnName="Сотрудник_ID" />
+                <ScalarProperty Name="Клиент_ID" ColumnName="Клиент_ID" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+                <ScalarProperty Name="Сумма_сделки" ColumnName="Сумма_сделки" />
+                <ScalarProperty Name="Дата_сделки" ColumnName="Дата_сделки" />
+                <ScalarProperty Name="Вид_основной_оказ_услуг" ColumnName="Вид_основной_оказ_услуг" />
+                <ScalarProperty Name="Сделка_ID" ColumnName="Сделка_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Документы">
+            <EntityTypeMapping TypeName="kursachModel.Документы">
+              <MappingFragment StoreEntitySet="Документы">
+                <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="СсылкаНаДокумент" ColumnName="СсылкаНаДокумент" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+                <ScalarProperty Name="ДействителенДо" ColumnName="ДействителенДо" />
+                <ScalarProperty Name="ДатаВыдачи" ColumnName="ДатаВыдачи" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="ТипДокумента" ColumnName="ТипДокумента" />
+                <ScalarProperty Name="Владелец_ID" ColumnName="Владелец_ID" />
+                <ScalarProperty Name="Документ_ID" ColumnName="Документ_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ДополнительныеУслуги">
+            <EntityTypeMapping TypeName="kursachModel.ДополнительныеУслуги">
+              <MappingFragment StoreEntitySet="ДополнительныеУслуги">
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Сделка_ID" ColumnName="Сделка_ID" />
+                <ScalarProperty Name="Услуга_ID" ColumnName="Услуга_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Недвижимость">
+            <EntityTypeMapping TypeName="kursachModel.Недвижимость">
+              <MappingFragment StoreEntitySet="Недвижимость">
+                <ScalarProperty Name="Владелец_ID" ColumnName="Владелец_ID" />
+                <ScalarProperty Name="Канализация" ColumnName="Канализация" />
+                <ScalarProperty Name="Водоснабжение" ColumnName="Водоснабжение" />
+                <ScalarProperty Name="Отопление" ColumnName="Отопление" />
+                <ScalarProperty Name="Наличие_парковки" ColumnName="Наличие_парковки" />
+                <ScalarProperty Name="Наличие_балкона_лоджии" ColumnName="Наличие_балкона_лоджии" />
+                <ScalarProperty Name="Год_постройки" ColumnName="Год_постройки" />
+                <ScalarProperty Name="Этажность_здания" ColumnName="Этажность_здания" />
+                <ScalarProperty Name="Этаж" ColumnName="Этаж" />
+                <ScalarProperty Name="Тип_недвижимости" ColumnName="Тип_недвижимости" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Количество_комнат" ColumnName="Количество_комнат" />
+                <ScalarProperty Name="Площадь" ColumnName="Площадь" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ОперацииСНедвижимостью">
+            <EntityTypeMapping TypeName="kursachModel.ОперацииСНедвижимостью">
+              <MappingFragment StoreEntitySet="ОперацииСНедвижимостью">
+                <ScalarProperty Name="Комментарии" ColumnName="Комментарии" />
+                <ScalarProperty Name="Сумма_операции" ColumnName="Сумма_операции" />
+                <ScalarProperty Name="Дата_операции" ColumnName="Дата_операции" />
+                <ScalarProperty Name="Наименование_услуги" ColumnName="Наименование_услуги" />
+                <ScalarProperty Name="Сделка_ID" ColumnName="Сделка_ID" />
+                <ScalarProperty Name="Операция_ID" ColumnName="Операция_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ОценкиНедвижимости">
+            <EntityTypeMapping TypeName="kursachModel.ОценкиНедвижимости">
+              <MappingFragment StoreEntitySet="ОценкиНедвижимости">
+                <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
+                <ScalarProperty Name="Оценочная_стоимость" ColumnName="Оценочная_стоимость" />
+                <ScalarProperty Name="Дата_оценки" ColumnName="Дата_оценки" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+                <ScalarProperty Name="Оценка_ID" ColumnName="Оценка_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователи">
+            <EntityTypeMapping TypeName="kursachModel.Пользователи">
+              <MappingFragment StoreEntitySet="Пользователи">
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Дата_регистрации" ColumnName="Дата_регистрации" />
+                <ScalarProperty Name="Электронная_почта" ColumnName="Электронная_почта" />
+                <ScalarProperty Name="Контактный_номер_телефона" ColumnName="Контактный_номер_телефона" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Пользователь_ID" ColumnName="Пользователь_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="СтатусНедвижимости">
+            <EntityTypeMapping TypeName="kursachModel.СтатусНедвижимости">
+              <MappingFragment StoreEntitySet="СтатусНедвижимости">
+                <ScalarProperty Name="Дата_изменения_статуса" ColumnName="Дата_изменения_статуса" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+                <ScalarProperty Name="Статус_ID" ColumnName="Статус_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ФотографииНедвижимости">
+            <EntityTypeMapping TypeName="kursachModel.ФотографииНедвижимости">
+              <MappingFragment StoreEntitySet="ФотографииНедвижимости">
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+                <ScalarProperty Name="Фото_ID" ColumnName="Фото_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_НедвижимостьДетали">
+            <EntityTypeMapping TypeName="kursachModel.View_НедвижимостьДетали">
+              <MappingFragment StoreEntitySet="View_НедвижимостьДетали">
+                <ScalarProperty Name="Канализация" ColumnName="Канализация" />
+                <ScalarProperty Name="Водоснабжение" ColumnName="Водоснабжение" />
+                <ScalarProperty Name="Отопление" ColumnName="Отопление" />
+                <ScalarProperty Name="Тип_недвижимости" ColumnName="Тип_недвижимости" />
+                <ScalarProperty Name="Количество_фото" ColumnName="Количество_фото" />
+                <ScalarProperty Name="Контактный_номер_телефона" ColumnName="Контактный_номер_телефона" />
+                <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+                <ScalarProperty Name="Фотография" ColumnName="Фотография" />
+                <ScalarProperty Name="Дата_изменения_статуса" ColumnName="Дата_изменения_статуса" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Наличие_парковки" ColumnName="Наличие_парковки" />
+                <ScalarProperty Name="Наличие_балкона_лоджии" ColumnName="Наличие_балкона_лоджии" />
+                <ScalarProperty Name="Год_постройки" ColumnName="Год_постройки" />
+                <ScalarProperty Name="Этажность_здания" ColumnName="Этажность_здания" />
+                <ScalarProperty Name="Этаж" ColumnName="Этаж" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Количество_комнат" ColumnName="Количество_комнат" />
+                <ScalarProperty Name="Площадь" ColumnName="Площадь" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Недвижимость_ID" ColumnName="Недвижимость_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
